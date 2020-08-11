@@ -1,0 +1,33 @@
+<div class="container pb-5">
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-4 p-0">
+            <label class="control-label">Search by name</label>
+            <input class="form-control" [(ngModel)]="name" (keyup)="nameFilter()">
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-4 p-0">
+            <div class="form-group">
+                <label for="rangeFilter">Filter by age</label>
+                <select id="rangeFilter" class="form-control" [(ngModel)]="selectAgeParam"
+                        (change)="onAgeChange($event)">
+                    <option [ngValue]="option" *ngFor="let option of ageOptions">
+                        {{option.minVal}} - {{option.maxVal}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 p-0">
+        <div class="col-4 col-md-2 p-0">
+            <button type="button" class="btn btn-primary"
+                    (click)="showForm()">Add User
+            </button>
+        </div>
+        <div class="col-8 col-md-4 col-lg-3 p-0">
+            <button type="button" class="btn btn-danger"
+                    (click)="removeSelectedRows()">Remove selected
+            </button>
+        </div>
+    </div>
+</div>

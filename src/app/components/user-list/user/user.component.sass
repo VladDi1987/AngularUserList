@@ -1,0 +1,45 @@
+@import "../../../../assets/sass/variables"
+@import "../../../../assets/sass/mixin"
+
+th, td
+  vertical-align: middle
+  position: relative
+
+
+.form-check-input
+  margin: 0
+  top: 50%
+  transform: translateY(-50%)
+
+input[type=checkbox]
+  display: none
+input[type=checkbox] + label
+  color: #000000
+  padding-left: 26px
+  position: relative
+  cursor: pointer
+  font-size: 14px
+  line-height: 25px
+  &:before,
+  &:after
+    @include pseudo
+    width: 18px
+    height: 18px
+    border-radius: 2px
+    border: 2px solid #ccc
+  &:before
+    top: -14px
+    left: 0
+  &:after
+    top: -8px
+    transform: rotate(-55deg)
+    left: 5px
+    width: 10px
+    height: 6px
+    border: 2px solid #000
+    border-top: none
+    border-right: none
+    background: transparent
+    opacity: 0
+input[type=checkbox]:checked + label:after
+  opacity: 1

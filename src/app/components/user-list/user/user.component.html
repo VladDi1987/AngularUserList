@@ -1,0 +1,46 @@
+<td scope="row">
+    <input type="checkbox" class="form-check-input"
+           [checked]="isSelected"
+           (change)="onSelectedRow()"
+           [id]="user.id"
+           [value]="user.selected">
+    <label class="form-check-label" [for]="user.id"></label>
+</td>
+<td scope="row">
+    <editable (update)="updateField(user.id, 'firstName')">
+        <ng-template viewMode>{{ user.firstName }}</ng-template>
+        <ng-template editMode>
+            <input [formControl]="getControl(user.id, 'firstName')" focusable editableOnEnter>
+        </ng-template>
+    </editable>
+</td>
+<td scope="row">
+    <editable (update)="updateField(user.id, 'lastName')">
+        <ng-template viewMode>{{ user.lastName }}</ng-template>
+        <ng-template editMode>
+            <input [formControl]="getControl(user.id, 'lastName')" focusable editableOnEnter>
+        </ng-template>
+    </editable>
+</td>
+<td scope="row">
+    <editable (update)="updateField(user.id, 'age')">
+        <ng-template viewMode>{{ user.age }}</ng-template>
+        <ng-template editMode>
+            <input [formControl]="getControl(user.id, 'age')" focusable editableOnEnter>
+        </ng-template>
+    </editable>
+</td>
+<td scope="row">
+    <editable (update)="updateField(user.id, 'email')">
+        <ng-template viewMode>{{ user.email }}</ng-template>
+        <ng-template editMode>
+            <input [formControl]="getControl(user.id, 'email')" focusable editableOnEnter>
+        </ng-template>
+    </editable>
+</td>
+<td scope="row">
+    <div class="d-flex justify-content-center">
+        <div class="button button_edit" (click)="edit(user.id)"></div>
+        <div class="button button_remove" (click)="remove(user.id)"></div>
+    </div>
+</td>

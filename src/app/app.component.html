@@ -1,0 +1,17 @@
+<div class="main">
+  <div class="main-content container">
+
+    <div class="row pt-4">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <app-search (nameEmitter)="updateUserList($event)"
+                    (ageEmitter)="onAgeEmmit($event)"
+        ></app-search>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <app-user-list [userName]="userName"
+                       [userAge]="userAge"
+        ></app-user-list>
+      </div>
+    </div>
+  </div>
+</div>

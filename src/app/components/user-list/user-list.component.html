@@ -1,0 +1,58 @@
+<app-spinner *ngIf="!isLoaded && !!userCollection"></app-spinner>
+
+<ng-container *ngIf="isLoaded && !!userCollection">
+    <div class="control d-flex  mb-3">
+        <div class="control__button col-sm-4 col-md-3 pl-0" *ngFor="let c of controlOptions">
+            <input type="radio" name="radio" class="control__radio"
+                   [id]="c.value" [value]="c.value" [(ngModel)]="selectedControl"
+                   (ngModelChange)="onControlChange()"/>
+            <label class="control__label" [for]="c.value">
+                {{ c.label }}
+            </label>
+        </div>
+    </div>
+
+    <div *ngIf="paginationVisible" class="pagination-control mb-4 d-flex justify-content-between">
+        <div class="col-sm-12 col-md-12 col-lg-12 p-0">
+            <div class="row d-flex justify-content-md-between">
+                <div class="col-sm-12 col-md-3 col-lg-3">
+                    <select class="custom-select"
+                            style="width: auto" (change)="onPageItemsChange(pageItems)"
+                            [(ngModel)]="pageItems">
+                        <option [ngValue]="option.value"
+                                *ngFor="let option of pageOptions">{{option.label}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-8 col-lg-6 mt-4 mt-md-0 d-flex justify-content-md-end">
+                    <pagination-controls [id]="configPagination.id"
+                                         (pageChange)="pageChanged($event)">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <virtual-scroller #scroll [items]="userCollection | ageFilter: curAge$ | nameFilter: curName$"
+                      [ngStyle]="scrollStyle"
+                      [childHeight]="65">
+        <table id="users" class="table table-striped">
+            <tbody #container class="table-body">
+            <tr *ngFor="let user of ((paginationVisible) ?  userCollection : scroll.viewPortItems)
+            | ageFilter: curAge$ | nameFilter: curName$ | paginate: configPagination; trackBy: trackByFn"
+                app-user
+                [user]="user"
+                (deleted)="onUserDeleted($event)">
+            </tr>
+            </tbody>
+            <thead #header class="table-header">
+            <tr>
+                <td scope="col" *ngFor="let col of columns"
+                    [ngClass]="col == 'Actions' ? 'text-center' : ''">
+                    {{ col }}
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </virtual-scroller>
+</ng-container>

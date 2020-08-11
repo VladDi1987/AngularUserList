@@ -1,0 +1,27 @@
+virtual-scroller
+  width: 100%
+  & .table
+    width: 100%
+    border: 1px solid #E5E5E5
+    & tr
+      font-size: 12px
+      vertical-align: middle
+      border-collapse: collapse
+    & thead tr td
+      border: 1px solid #c1c1c1
+      color: $white
+      text-align: center
+      vertical-align: middle
+      font-weight: bold
+      height: 65px
+      background: #4CAF50
+      z-index: 1
+    & tbody tr td
+      text-align: center
+      border: 1px solid #c1c1c1
+    & tbody tr
+      color: $black
+      &:nth-child(even)
+        background: #f2f2f2
+      &:hover
+        background: #ddd
